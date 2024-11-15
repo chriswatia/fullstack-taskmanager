@@ -3,6 +3,7 @@ package com.warriors.taskmanager.Controllers;
 import com.warriors.taskmanager.Models.Project;
 import com.warriors.taskmanager.Models.Task;
 import com.warriors.taskmanager.Models.TaskStatus;
+import com.warriors.taskmanager.Models.TaskSummary;
 import com.warriors.taskmanager.Services.ProjectService;
 import com.warriors.taskmanager.Services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,12 @@ public class ProjectController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    // Get a summary of tasks grouped by status for a specific project
+    @GetMapping("/projects/{projectId}/summary")
+    public ResponseEntity<TaskSummary> getTaskSummaryForProject(@PathVariable Long projectId) {
+        TaskSummary summary = taskService.getTaskSummaryForProject(projectId);
+        return ResponseEntity.ok(summary);
     }
 }
