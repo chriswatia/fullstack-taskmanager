@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/projects")
+@RequestMapping("api/v1/projects")
 public class ProjectController {
-    @Autowired
     private ProjectService projectService;
+    @Autowired
+    public ProjectController(ProjectService projectService) {
+        this.projectService = projectService;
+    }
 
     //POST request to Create Project api/v1/projects
     @PostMapping
