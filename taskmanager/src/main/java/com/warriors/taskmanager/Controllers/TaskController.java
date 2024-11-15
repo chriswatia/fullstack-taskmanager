@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,RequestMethod.DELETE, RequestMethod.OPTIONS}) // Enable CORS for this controller
 @RequestMapping("api/v1/tasks")
 public class TaskController {
     private TaskService taskService;
