@@ -10,9 +10,9 @@ import java.util.Optional;
 
 @Service
 public class ProjectService {
-    @Autowired //Dependency Injection
-    private ProjectRepository projectRepository;
-
+    //Dependency Injection
+    private final ProjectRepository projectRepository;
+    @Autowired
     public ProjectService(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }

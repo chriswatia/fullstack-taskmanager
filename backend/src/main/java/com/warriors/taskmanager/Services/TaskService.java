@@ -15,13 +15,10 @@ import java.util.Date;
 
 @Service
 public class TaskService {
+    private final TaskRepository taskRepository;
+    private final ProjectRepository projectRepository;
 
     @Autowired
-    private TaskRepository taskRepository;
-
-    @Autowired
-    private ProjectRepository projectRepository;
-
     public TaskService(TaskRepository taskRepository, ProjectRepository projectRepository) {
         this.taskRepository = taskRepository;
         this.projectRepository = projectRepository;

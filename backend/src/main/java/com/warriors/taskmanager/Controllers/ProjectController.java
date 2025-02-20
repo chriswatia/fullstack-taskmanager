@@ -1,17 +1,13 @@
 package com.warriors.taskmanager.Controllers;
 
 import com.warriors.taskmanager.Models.Project;
-import com.warriors.taskmanager.Models.Task;
-import com.warriors.taskmanager.Models.TaskStatus;
 import com.warriors.taskmanager.Models.TaskSummary;
 import com.warriors.taskmanager.Services.ProjectService;
 import com.warriors.taskmanager.Services.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

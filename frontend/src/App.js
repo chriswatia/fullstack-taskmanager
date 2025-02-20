@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { getProjects, createProject, getTasks, createTask } from "./Service";
 
 function App() {
   const [projects, setProjects] = useState([]);
@@ -15,16 +15,14 @@ function App() {
 
   // Fetch all projects on page load
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/v1/projects")
+    getProjects()
       .then((response) => setProjects(response.data))
       .catch((error) => console.error("Error fetching projects:", error));
   }, []);
 
   // Create a new project
   const handleProjectCreate = () => {
-    axios
-      .post("http://localhost:8080/api/v1/projects", newProject)
+    createProject(newProject)
       .then((response) => {
         setProjects([...projects, response.data]);
         setNewProject({ name: "", description: "" });
@@ -34,8 +32,7 @@ function App() {
 
   // Fetch tasks for a specific project
   const fetchTasks = (projectId) => {
-    axios
-      .get(`http://localhost:8080/api/v1/projects/${projectId}`)
+    getTasks(projectId)
       .then((response) => {
         setTasks(response.data.tasks);
         setCurrentProjectId(projectId); // Set the current project ID
@@ -45,14 +42,9 @@ function App() {
 
   // Add a new task to a project
   const handleTaskCreate = () => {
-    if (!currentProjectId) return; // Ensure there's a selected project
-    axios
-      .post(
-        `http://localhost:8080/api/v1/tasks/projects/${currentProjectId}`,
-        newTask
-      )
+    createTask(currentProjectId, newTask)
       .then((response) => {
-        fetchTasks(currentProjectId); // Re-fetch tasks for the current project
+        setTasks([...tasks, response.data]);
         setNewTask({
           title: "",
           description: "",
